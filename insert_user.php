@@ -7,7 +7,7 @@
 	$birthday = $_POST['u_birthday'];
 
 	if(strlen($code) > 0){
-		$query = "INSERT INTO user(u_code,u_name,u_email,u_sex,u_birthday) VALUES ('$code','$name','$email','$gender','$birthday')";
+		$query = "INSERT INTO user(u_code,u_name,u_email,u_gender,u_birthday) VALUES ('$code','$name','$email','$gender','$birthday')";
 		$result = mysqli_query($conn, $query);
 		if ($result) {
 			echo "Success";
