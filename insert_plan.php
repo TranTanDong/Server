@@ -12,7 +12,6 @@
 		}else{
 			echo "Fail";
 		}
-
 	}else{
 		echo "Check data";
 	}
