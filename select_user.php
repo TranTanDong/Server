@@ -18,7 +18,6 @@
 	echo json_encode($arrayuser);
 
 
-
 	class User{
 		function User($code,$name,$image,$email,$gender,$birthday){
 			$this->code=$code;

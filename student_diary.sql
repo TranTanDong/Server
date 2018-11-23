@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 19, 2018 lúc 08:08 PM
+-- Thời gian đã tạo: Th10 23, 2018 lúc 07:06 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `class` (
   `c_id` int(11) NOT NULL,
-  `c_idyear` int(11) NOT NULL,
+  `c_idsemester` int(11) NOT NULL,
   `c_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,10 +38,13 @@ CREATE TABLE `class` (
 -- Đang đổ dữ liệu cho bảng `class`
 --
 
-INSERT INTO `class` (`c_id`, `c_idyear`, `c_name`) VALUES
-(1, 2018, '12A6'),
-(2, 2018, 'IT A2'),
-(3, 2018, 'IT A2 K40');
+INSERT INTO `class` (`c_id`, `c_idsemester`, `c_name`) VALUES
+(20, 13, '12A2'),
+(21, 13, '12A3'),
+(22, 13, '12A6'),
+(23, 13, '12A6'),
+(24, 13, '12A6'),
+(25, 13, 'IT A2');
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,12 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`e_id`, `e_idplan`, `e_name`, `e_place`, `e_starttime`, `e_endtime`, `e_priority`, `e_remind`, `e_describe`) VALUES
-(1, 1, 'Sự kiện 1', '', '2018-11-15 20:28:00', '2018-11-15 21:28:00', 30, 10, '');
+(1, 1, 'Sự kiện 1', '', '2018-11-15 20:28:00', '2018-11-15 21:28:00', 30, 10, ''),
+(2, 2, 'Trả tiền ngày 1', '', '2018-11-21 00:40:00', '2018-11-21 01:40:00', 64, 20, 'Haha'),
+(3, 2, 'Trả tiền ngày 2', '', '2018-11-21 00:40:00', '2018-11-21 01:40:00', 31, 10, 'Haha huhu'),
+(4, 2, 'Trả tiền ngày 3', 'Bank', '2018-11-21 01:30:00', '2018-11-21 01:55:00', 59, 10, 'Haha huhu'),
+(7, 1, 'Tìm nhà trọ cho cháu gái', 'Đường NVL và 3/2', '2018-11-22 10:00:00', '2018-11-22 13:00:00', 30, 10, 'Đi cùng tụi bạn haha\nHà hà'),
+(8, 39, 'Đi làm phục vụ', 'Nhà hàng Vạn Phát', '2018-11-25 09:00:00', '2018-11-25 14:00:00', 62, 20, 'Không có mô tả');
 
 -- --------------------------------------------------------
 
@@ -119,6 +127,16 @@ CREATE TABLE `form` (
   `f_id` int(11) NOT NULL,
   `f_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `form`
+--
+
+INSERT INTO `form` (`f_id`, `f_name`) VALUES
+(1, 'Trắc nghiệm'),
+(2, 'Tự luận'),
+(3, 'Thực hành'),
+(4, 'Trắc nghiệm và tự luận');
 
 -- --------------------------------------------------------
 
@@ -139,12 +157,13 @@ CREATE TABLE `lecturer` (
 --
 
 INSERT INTO `lecturer` (`l_id`, `l_name`, `l_phone`, `l_email`, `l_web`) VALUES
-(1, 'A', NULL, NULL, NULL),
-(11, 'C', '0123546555', 'a@gmail.com', 'a.com'),
-(12, 'C', '0123546555', 'a@gmail.com', 'a.com'),
-(13, 'C', '0123546555', 'a@gmail.com', 'a.com'),
-(14, 'PNQ', '', '', ''),
-(15, 'PNQ', '', '', '');
+(30, 'Nguyen Thi Ut', '', '', ''),
+(32, 'Sa BanTụn', '', '', ''),
+(33, 'Trần Thanh Tuấn', '', '', ''),
+(34, 'Nguyễn Thị Út', '', '', ''),
+(35, 'Nguyễn Thanh Toàn', '', '', ''),
+(36, 'Nguyễn Văn Chim', '', '', ''),
+(37, 'Phạm Ngọc Quyền', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -170,7 +189,10 @@ INSERT INTO `plan` (`p_id`, `p_codeuser`, `p_name`, `p_updateday`) VALUES
 (12, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Code dạo', '2018-11-10'),
 (13, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Cafe cuối tuần', '2018-11-12'),
 (28, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nãn thật', '2018-11-12'),
-(29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12');
+(29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12'),
+(30, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'A', '2018-11-20'),
+(38, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Học ML', '2018-11-22'),
+(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23');
 
 -- --------------------------------------------------------
 
@@ -201,10 +223,7 @@ CREATE TABLE `schoolyear` (
 --
 
 INSERT INTO `schoolyear` (`sy_id`) VALUES
-(0),
-(2018),
-(2019),
-(2020);
+(2018);
 
 -- --------------------------------------------------------
 
@@ -213,7 +232,7 @@ INSERT INTO `schoolyear` (`sy_id`) VALUES
 --
 
 CREATE TABLE `score` (
-  `sco_score` int(11) NOT NULL,
+  `sco_score` float NOT NULL,
   `sco_idstudy` int(11) NOT NULL,
   `sco_idtos` int(11) NOT NULL,
   `sco_idform` int(11) NOT NULL
@@ -236,10 +255,7 @@ CREATE TABLE `semester` (
 --
 
 INSERT INTO `semester` (`sm_id`, `sm_name`, `sm_year`) VALUES
-(1, 'Học kỳ 1', 2018),
-(2, 'HK I', 2020),
-(4, 'HK III', 2018),
-(5, 'HK I', 2018);
+(13, 'Học kỳ 1', 2018);
 
 -- --------------------------------------------------------
 
@@ -260,7 +276,12 @@ CREATE TABLE `study` (
 --
 
 INSERT INTO `study` (`st_id`, `st_codeuser`, `st_idlecturer`, `st_idsubject`, `st_idclass`) VALUES
-(2, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 15, 3, 3);
+(19, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 32, 20, 20),
+(20, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 33, 21, 21),
+(21, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 34, 22, 22),
+(22, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 35, 23, 23),
+(23, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 36, 24, 24),
+(24, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 37, 25, 25);
 
 -- --------------------------------------------------------
 
@@ -279,9 +300,12 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
-(1, 'Math', '2018-11-20'),
-(2, 'Toan', '2018-11-20'),
-(3, 'LVTN', '2018-11-20');
+(20, 'Hóa', '2018-11-23'),
+(21, 'Lý', '2018-11-24'),
+(22, 'Toán', '2018-11-24'),
+(23, 'GDCD', '2018-11-24'),
+(24, 'Văn', '2018-11-24'),
+(25, 'LVTN', '2018-11-24');
 
 -- --------------------------------------------------------
 
@@ -292,8 +316,7 @@ INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
 CREATE TABLE `testschedule` (
   `ts_id` int(11) NOT NULL,
   `ts_idstudy` int(11) NOT NULL,
-  `ts_idsemester` int(11) NOT NULL,
-  `ts_name` varchar(100) NOT NULL,
+  `ts_idform` int(11) NOT NULL,
   `ts_daytest` datetime NOT NULL,
   `ts_place` varchar(100) NOT NULL,
   `ts_note` varchar(200) NOT NULL
@@ -321,6 +344,15 @@ CREATE TABLE `typeofscore` (
   `tos_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `typeofscore`
+--
+
+INSERT INTO `typeofscore` (`tos_id`, `tos_name`) VALUES
+(1, 'Hệ số 1'),
+(2, 'Hệ số 2'),
+(3, 'Hệ số 3');
+
 -- --------------------------------------------------------
 
 --
@@ -341,7 +373,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_code`, `u_name`, `u_image`, `u_email`, `u_gender`, `u_birthday`) VALUES
-('8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Demo', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2F8gLYImKCKaZ0UNQfCYMY3ZY56bt2.png?alt=media&token=12ca6702-5bf0-4a4c-be7b-09175d7574b2', 'demo@gmail.com', 1, '1996-12-02'),
+('8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Demo', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2F8gLYImKCKaZ0UNQfCYMY3ZY56bt2.png?alt=media&token=6f7feda2-e2ea-47e1-937e-a8946f48a2ba', 'demo@gmail.com', 0, '1997-12-20'),
 ('Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Demo Female', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FChybi1iYOvOQbN9ajDAySdV1Gsh1.png?alt=media&token=dde66932-00ea-4428-a023-c7fe8d8925da', 'demo1@gmail.com', 1, '1987-11-08');
 
 --
@@ -353,7 +385,7 @@ INSERT INTO `user` (`u_code`, `u_name`, `u_image`, `u_email`, `u_gender`, `u_bir
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`c_id`) USING BTREE,
-  ADD KEY `fkc_schoolyear` (`c_idyear`);
+  ADD KEY `fkc_semester` (`c_idsemester`);
 
 --
 -- Chỉ mục cho bảng `diary`
@@ -452,7 +484,7 @@ ALTER TABLE `subject`
 ALTER TABLE `testschedule`
   ADD PRIMARY KEY (`ts_id`),
   ADD KEY `fkts_study` (`ts_idstudy`),
-  ADD KEY `fkts_semester` (`ts_idsemester`);
+  ADD KEY `fkts_form` (`ts_idform`);
 
 --
 -- Chỉ mục cho bảng `typeofdocument`
@@ -480,7 +512,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `class`
 --
 ALTER TABLE `class`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `diary`
@@ -504,25 +536,25 @@ ALTER TABLE `documentsubject`
 -- AUTO_INCREMENT cho bảng `event`
 --
 ALTER TABLE `event`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `form`
 --
 ALTER TABLE `form`
-  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `lecturer`
 --
 ALTER TABLE `lecturer`
-  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `schedule`
@@ -534,19 +566,19 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT cho bảng `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `study`
 --
 ALTER TABLE `study`
-  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `testschedule`
@@ -564,7 +596,7 @@ ALTER TABLE `typeofdocument`
 -- AUTO_INCREMENT cho bảng `typeofscore`
 --
 ALTER TABLE `typeofscore`
-  MODIFY `tos_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -574,7 +606,7 @@ ALTER TABLE `typeofscore`
 -- Các ràng buộc cho bảng `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `fkc_schoolyear` FOREIGN KEY (`c_idyear`) REFERENCES `schoolyear` (`sy_id`);
+  ADD CONSTRAINT `fkc_semester` FOREIGN KEY (`c_idsemester`) REFERENCES `semester` (`sm_id`);
 
 --
 -- Các ràng buộc cho bảng `diary`
@@ -639,7 +671,7 @@ ALTER TABLE `study`
 -- Các ràng buộc cho bảng `testschedule`
 --
 ALTER TABLE `testschedule`
-  ADD CONSTRAINT `fkts_semester` FOREIGN KEY (`ts_idsemester`) REFERENCES `semester` (`sm_id`),
+  ADD CONSTRAINT `fkts_form` FOREIGN KEY (`ts_idform`) REFERENCES `form` (`f_id`),
   ADD CONSTRAINT `fkts_study` FOREIGN KEY (`ts_idstudy`) REFERENCES `study` (`st_id`);
 COMMIT;
 
