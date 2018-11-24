@@ -4,7 +4,7 @@
 	// $codeuser = "Chybi1iYOvOQbN9ajDAySdV1Gsh1";
 
 	$arraysubject = array();
-	$query = "SELECT s_id,s_name,s_createday,st_codeuser FROM subject,study WHERE subject.s_id=study.st_idsubject";
+	$query = "SELECT s_id,s_name,s_createday,st_codeuser,st_id FROM subject,study WHERE subject.s_id=study.st_idsubject";
 
 	$data = mysqli_query($conn,$query);
 	while ($row = mysqli_fetch_assoc($data)) {
@@ -12,7 +12,8 @@
 			$row['s_id'],
 			$row['s_name'],
 			$row['s_createday'],
-			$row['st_codeuser'])
+			$row['st_codeuser'],
+			$row['st_id'])
 		);
 	}
 
@@ -21,11 +22,12 @@
 
 
 	class Subject{
-		function Subject($id,$name,$createday,$codeuser){
+		function Subject($id,$name,$createday,$codeuser,$idst){
 			$this->id=$id;
 			$this->name=$name;
 			$this->createday=$createday;
 			$this->codeuser=$codeuser;
+			$this->idst=$idst;
 		}
 	}
 

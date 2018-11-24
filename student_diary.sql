@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 23, 2018 lúc 07:06 PM
+-- Thời gian đã tạo: Th10 24, 2018 lúc 06:50 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -42,8 +42,6 @@ INSERT INTO `class` (`c_id`, `c_idsemester`, `c_name`) VALUES
 (20, 13, '12A2'),
 (21, 13, '12A3'),
 (22, 13, '12A6'),
-(23, 13, '12A6'),
-(24, 13, '12A6'),
 (25, 13, 'IT A2');
 
 -- --------------------------------------------------------
@@ -163,7 +161,9 @@ INSERT INTO `lecturer` (`l_id`, `l_name`, `l_phone`, `l_email`, `l_web`) VALUES
 (34, 'Nguyễn Thị Út', '', '', ''),
 (35, 'Nguyễn Thanh Toàn', '', '', ''),
 (36, 'Nguyễn Văn Chim', '', '', ''),
-(37, 'Phạm Ngọc Quyền', '', '', '');
+(37, 'Phạm Ngọc Quyền', '', '', ''),
+(38, 'Trần Việt Châu', '', '', ''),
+(39, 'Phạm Ngọc Diễm', '0123456789', 'pndiem@gmail.com.vn', 'https://tcan.gnomio.com/');
 
 -- --------------------------------------------------------
 
@@ -279,9 +279,11 @@ INSERT INTO `study` (`st_id`, `st_codeuser`, `st_idlecturer`, `st_idsubject`, `s
 (19, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 32, 20, 20),
 (20, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 33, 21, 21),
 (21, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 34, 22, 22),
-(22, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 35, 23, 23),
-(23, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 36, 24, 24),
-(24, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 37, 25, 25);
+(22, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 35, 23, 22),
+(23, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 36, 24, 22),
+(24, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 37, 25, 25),
+(25, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 38, 26, 25),
+(30, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 39, 31, 25);
 
 -- --------------------------------------------------------
 
@@ -305,7 +307,9 @@ INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
 (22, 'Toán', '2018-11-24'),
 (23, 'GDCD', '2018-11-24'),
 (24, 'Văn', '2018-11-24'),
-(25, 'LVTN', '2018-11-24');
+(25, 'LVTN', '2018-11-24'),
+(26, 'Toán Rời Rạc', '2018-11-24'),
+(31, 'CSDL', '2018-11-24');
 
 -- --------------------------------------------------------
 
@@ -548,7 +552,7 @@ ALTER TABLE `form`
 -- AUTO_INCREMENT cho bảng `lecturer`
 --
 ALTER TABLE `lecturer`
-  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `plan`
@@ -572,13 +576,13 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT cho bảng `study`
 --
 ALTER TABLE `study`
-  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `testschedule`

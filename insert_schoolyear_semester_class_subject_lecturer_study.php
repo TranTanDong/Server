@@ -18,7 +18,7 @@
 
 	if (strlen($codeuser) > 0 && strlen($namesubject) > 0 && strlen($nameclass) > 0 && strlen($namesemester) > 0 && strlen($namelecturer) > 0 && strlen($year) > 0) {
 		//Insert Lecturer
-		$query_lecturer = "INSERT INTO lecturer(l_id,l_name,l_phone,l_email,l_web) VALUES (null,'$namelecturer','$phonelecturer','$emaillecturer','$weblecturer')";
+		$query_lecturer = "INSERT INTO lecturer(l_id,l_name,l_phone,l_email,l_web) VALUES ( null,'$namelecturer','$phonelecturer','$emaillecturer','$weblecturer')";
 		$result_lecturer = mysqli_query($conn,$query_lecturer);
 		if ($result_lecturer) {
 			$idlecturer = $conn->insert_id;
@@ -48,7 +48,6 @@
 		}else echo " - Insert Semester Error";
 
 		if ($idsemester === 0) {
-			$arraysemester = array();
 			$data = mysqli_query($conn, $query_idsemester);
 			$i=0;
 			while ($row = mysqli_fetch_assoc($data)) {
@@ -62,12 +61,25 @@
 		}
 
 		//Insert Class
-		$query_class = "INSERT INTO class(c_id,c_idsemester,c_name) VALUES (null,'$idsemester','$nameclass')";
+		$query_class = "INSERT INTO class(c_idsemester,c_name) SELECT * FROM (SELECT '$idsemester','$nameclass') as cl WHERE NOT EXISTS(SELECT c_idsemester,c_name FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass') LIMIT 1";
+		$query_idclass = "SELECT c_id FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass'";
 		$result_class = mysqli_query($conn,$query_class);
 		if ($result_class) {
 			$idclass = $conn->insert_id;
 			echo " - ID class: " . $idclass;
 		}else echo " - Insert Class Error";
+		if ($idclass === 0) {
+			$data_class = mysqli_query($conn, $query_idclass);
+			$i=0;
+			while ($row = mysqli_fetch_assoc($data_class)) {
+				if ($i===0) {
+					$idclass=$row['c_id'];
+				}
+				$i=$i+1;
+			}
+
+			echo $idclass;
+		}
 
 		//Insert Study
 		$query_study = "INSERT INTO study(st_id,st_codeuser,st_idlecturer,st_idsubject,st_idclass) VALUES (null,'$codeuser','$idlecturer','$idsubject','$idclass')";
@@ -78,9 +90,15 @@
 		}else echo " - Insert Study Error";
 	}else echo " - Check data";
 
-	class Semester{
-		function Semester($id){
-			$this->id=$id;
-		}
-	}
+	// class Semester{
+	// 	function Semester($id){
+	// 		$this->id=$id;
+	// 	}
+	// }
+
+	// class Class{
+	// 	function Class($id){
+	// 		$this->id=$id;
+	// 	}
+	// }
 ?>
