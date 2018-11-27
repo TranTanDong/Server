@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 24, 2018 lúc 06:50 PM
+-- Thời gian đã tạo: Th10 27, 2018 lúc 06:32 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -41,8 +41,8 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`c_id`, `c_idsemester`, `c_name`) VALUES
 (20, 13, '12A2'),
 (21, 13, '12A3'),
-(22, 13, '12A6'),
-(25, 13, 'IT A2');
+(22, 14, '12A6'),
+(25, 15, 'IT A2');
 
 -- --------------------------------------------------------
 
@@ -161,9 +161,9 @@ INSERT INTO `lecturer` (`l_id`, `l_name`, `l_phone`, `l_email`, `l_web`) VALUES
 (34, 'Nguyễn Thị Út', '', '', ''),
 (35, 'Nguyễn Thanh Toàn', '', '', ''),
 (36, 'Nguyễn Văn Chim', '', '', ''),
-(37, 'Phạm Ngọc Quyền', '', '', ''),
-(38, 'Trần Việt Châu', '', '', ''),
-(39, 'Phạm Ngọc Diễm', '0123456789', 'pndiem@gmail.com.vn', 'https://tcan.gnomio.com/');
+(37, 'Phạm Ngọc Quyền', '0147258369', 'pnquyen@cit.ctu.edu.vn', 'pnquyen.com'),
+(38, 'Trần Việt Châu', '0987654321', 'tvchau@cit.ctu.edu.vn', 'tvchau.com'),
+(39, 'Phạm Thị Xuân Diễm', '0123456789', 'ptxdiem@cit.ctu.edu.vn', 'ptxdiem.com');
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,7 @@ CREATE TABLE `plan` (
   `p_id` int(11) NOT NULL,
   `p_codeuser` varchar(50) NOT NULL,
   `p_name` varchar(200) NOT NULL,
-  `p_updateday` date NOT NULL
+  `p_updateday` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -183,16 +183,15 @@ CREATE TABLE `plan` (
 --
 
 INSERT INTO `plan` (`p_id`, `p_codeuser`, `p_name`, `p_updateday`) VALUES
-(1, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Cướp nhà bank', '2018-11-09'),
-(2, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Trả tiền bank', '2018-11-17'),
-(8, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Làm báo cáo ', '2018-11-09'),
-(12, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Code dạo', '2018-11-10'),
-(13, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Cafe cuối tuần', '2018-11-12'),
-(28, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nãn thật', '2018-11-12'),
-(29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12'),
-(30, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'A', '2018-11-20'),
-(38, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Học ML', '2018-11-22'),
-(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23');
+(1, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Cướp nhà bank', '2018-11-09 09:25:00'),
+(2, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Trả tiền bank', '2018-11-17 00:11:15'),
+(8, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Làm báo cáo ', '2018-11-09 07:24:00'),
+(12, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Code dạo', '2018-11-10 10:35:29'),
+(13, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Cafe cuối tuần', '2018-11-12 10:19:12'),
+(28, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nãn thật', '2018-11-12 06:12:41'),
+(29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12 13:23:17'),
+(38, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Học ML', '2018-11-22 07:16:17'),
+(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23 07:20:13');
 
 -- --------------------------------------------------------
 
@@ -223,7 +222,9 @@ CREATE TABLE `schoolyear` (
 --
 
 INSERT INTO `schoolyear` (`sy_id`) VALUES
-(2018);
+(2018),
+(2019),
+(2020);
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,9 @@ CREATE TABLE `semester` (
 --
 
 INSERT INTO `semester` (`sm_id`, `sm_name`, `sm_year`) VALUES
-(13, 'Học kỳ 1', 2018);
+(13, 'Học kỳ 1', 2018),
+(14, 'Học kỳ 1', 2019),
+(15, 'Học kỳ 2', 2019);
 
 -- --------------------------------------------------------
 
@@ -294,7 +297,7 @@ INSERT INTO `study` (`st_id`, `st_codeuser`, `st_idlecturer`, `st_idsubject`, `s
 CREATE TABLE `subject` (
   `s_id` int(11) NOT NULL,
   `s_name` varchar(100) NOT NULL,
-  `s_createday` date NOT NULL
+  `s_createday` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -302,14 +305,14 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
-(20, 'Hóa', '2018-11-23'),
-(21, 'Lý', '2018-11-24'),
-(22, 'Toán', '2018-11-24'),
-(23, 'GDCD', '2018-11-24'),
-(24, 'Văn', '2018-11-24'),
-(25, 'LVTN', '2018-11-24'),
-(26, 'Toán Rời Rạc', '2018-11-24'),
-(31, 'CSDL', '2018-11-24');
+(20, 'Hóa', '2018-11-23 03:14:00'),
+(21, 'Lý', '2018-11-24 17:26:25'),
+(22, 'Toán', '2018-11-24 05:26:20'),
+(23, 'GDCD', '2018-11-24 12:16:22'),
+(24, 'Văn', '2018-11-24 08:10:19'),
+(25, 'LVTN', '2018-11-24 07:32:32'),
+(26, 'Toán Rời Rạc', '2018-11-24 08:16:14'),
+(31, 'CSDL', '2018-11-24 08:24:24');
 
 -- --------------------------------------------------------
 
@@ -378,7 +381,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`u_code`, `u_name`, `u_image`, `u_email`, `u_gender`, `u_birthday`) VALUES
 ('8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Demo', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2F8gLYImKCKaZ0UNQfCYMY3ZY56bt2.png?alt=media&token=6f7feda2-e2ea-47e1-937e-a8946f48a2ba', 'demo@gmail.com', 0, '1997-12-20'),
-('Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Demo Female', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FChybi1iYOvOQbN9ajDAySdV1Gsh1.png?alt=media&token=dde66932-00ea-4428-a023-c7fe8d8925da', 'demo1@gmail.com', 1, '1987-11-08');
+('Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Demo Pro', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FChybi1iYOvOQbN9ajDAySdV1Gsh1.png?alt=media&token=e44d7ff6-532e-462a-b09a-1a9a4c26a4a8', 'demo1@gmail.com', 0, '2006-07-08');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -570,7 +573,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT cho bảng `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `study`
