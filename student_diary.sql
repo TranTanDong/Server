@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2018 lúc 06:32 PM
+-- Thời gian đã tạo: Th10 28, 2018 lúc 06:45 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -42,7 +42,7 @@ INSERT INTO `class` (`c_id`, `c_idsemester`, `c_name`) VALUES
 (20, 13, '12A2'),
 (21, 13, '12A3'),
 (22, 14, '12A6'),
-(25, 15, 'IT A2');
+(25, 15, 'NL HĐH');
 
 -- --------------------------------------------------------
 
@@ -191,7 +191,8 @@ INSERT INTO `plan` (`p_id`, `p_codeuser`, `p_name`, `p_updateday`) VALUES
 (28, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nãn thật', '2018-11-12 06:12:41'),
 (29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12 13:23:17'),
 (38, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Học ML', '2018-11-22 07:16:17'),
-(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23 07:20:13');
+(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23 07:20:13'),
+(40, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Làm báo cáo Luận Văn', '2018-11-28 21:51:22');
 
 -- --------------------------------------------------------
 
@@ -206,6 +207,14 @@ CREATE TABLE `schedule` (
   `sch_place` varchar(50) NOT NULL,
   `sch_lesson` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `schedule`
+--
+
+INSERT INTO `schedule` (`sch_id`, `sch_idstudy`, `sch_dayofweek`, `sch_place`, `sch_lesson`) VALUES
+(1, 30, 'Thứ 4', '101/KH', '45'),
+(2, 30, 'Thứ 6', 'P01/DI', '123456');
 
 -- --------------------------------------------------------
 
@@ -258,7 +267,7 @@ CREATE TABLE `semester` (
 INSERT INTO `semester` (`sm_id`, `sm_name`, `sm_year`) VALUES
 (13, 'Học kỳ 1', 2018),
 (14, 'Học kỳ 1', 2019),
-(15, 'Học kỳ 2', 2019);
+(15, 'Học kỳ 1', 2019);
 
 -- --------------------------------------------------------
 
@@ -312,7 +321,7 @@ INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
 (24, 'Văn', '2018-11-24 08:10:19'),
 (25, 'LVTN', '2018-11-24 07:32:32'),
 (26, 'Toán Rời Rạc', '2018-11-24 08:16:14'),
-(31, 'CSDL', '2018-11-24 08:24:24');
+(31, 'Nguyên Lý HĐH', '2018-11-24 08:24:24');
 
 -- --------------------------------------------------------
 
@@ -561,13 +570,13 @@ ALTER TABLE `lecturer`
 -- AUTO_INCREMENT cho bảng `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sch_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `semester`

@@ -39,47 +39,50 @@
 		}else echo " - Insert Schoolyear Error";
 		
 		//Process Semester
-		$query_semester = "INSERT INTO semester(sm_name,sm_year) SELECT * FROM (SELECT '$namesemester','$year') as smt WHERE NOT EXISTS (SELECT sm_name,sm_year FROM semester WHERE sm_name='$namesemester' && sm_year='$year') LIMIT 1";
-		$query_idsemester = "SELECT sm_id FROM semester WHERE sm_name='$namesemester' && sm_year='$year'";
+		// $query_semester = "INSERT INTO semester(sm_name,sm_year) SELECT * FROM (SELECT '$namesemester','$year') as smt WHERE NOT EXISTS (SELECT sm_name,sm_year FROM semester WHERE sm_name='$namesemester' && sm_year='$year') LIMIT 1";
+		// $query_idsemester = "SELECT sm_id FROM semester WHERE sm_name='$namesemester' && sm_year='$year'";
+		$query_semester = "INSERT INTO semester(sm_id,sm_name,sm_year) VALUES (null,'$namesemester','$year')";
 		$result_semester = mysqli_query($conn,$query_semester);
 		if ($result_semester) {
 			$idsemester = $conn->insert_id;
 			echo " - ID semester: " . $idsemester;
 		}else echo " - Insert Semester Error";
 
-		if ($idsemester === 0) {
-			$data = mysqli_query($conn, $query_idsemester);
-			$i=0;
-			while ($row = mysqli_fetch_assoc($data)) {
-				if ($i===0) {
-					$idsemester=$row['sm_id'];
-				}
-				$i=$i+1;
-			}
+		// if ($idsemester === 0) {
+		// 	$data = mysqli_query($conn, $query_idsemester);
+		// 	$i=0;
+		// 	while ($row = mysqli_fetch_assoc($data)) {
+		// 		if ($i===0) {
+		// 			$idsemester=$row['sm_id'];
+		// 		}
+		// 		$i=$i+1;
+		// 	}
 
-			echo $idsemester;
-		}
+		// 	echo $idsemester;
+		// }
 
 		//Insert Class
-		$query_class = "INSERT INTO class(c_idsemester,c_name) SELECT * FROM (SELECT '$idsemester','$nameclass') as cl WHERE NOT EXISTS(SELECT c_idsemester,c_name FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass') LIMIT 1";
-		$query_idclass = "SELECT c_id FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass'";
+		// $query_class = "INSERT INTO class(c_idsemester,c_name) SELECT * FROM (SELECT '$idsemester','$nameclass') as cl WHERE NOT EXISTS(SELECT c_idsemester,c_name FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass') LIMIT 1";
+		// $query_idclass = "SELECT c_id FROM class WHERE c_idsemester='$idsemester' && c_name='$nameclass'";
+		$query_class = "INSERT INTO class(c_id,c_idsemester,c_name) VALUES (null,'$idsemester','$nameclass')";
 		$result_class = mysqli_query($conn,$query_class);
 		if ($result_class) {
 			$idclass = $conn->insert_id;
 			echo " - ID class: " . $idclass;
 		}else echo " - Insert Class Error";
-		if ($idclass === 0) {
-			$data_class = mysqli_query($conn, $query_idclass);
-			$i=0;
-			while ($row = mysqli_fetch_assoc($data_class)) {
-				if ($i===0) {
-					$idclass=$row['c_id'];
-				}
-				$i=$i+1;
-			}
 
-			echo $idclass;
-		}
+		// if ($idclass === 0) {
+		// 	$data_class = mysqli_query($conn, $query_idclass);
+		// 	$i=0;
+		// 	while ($row = mysqli_fetch_assoc($data_class)) {
+		// 		if ($i===0) {
+		// 			$idclass=$row['c_id'];
+		// 		}
+		// 		$i=$i+1;
+		// 	}
+
+		// 	echo $idclass;
+		// }
 
 		//Insert Study
 		$query_study = "INSERT INTO study(st_id,st_codeuser,st_idlecturer,st_idsubject,st_idclass) VALUES (null,'$codeuser','$idlecturer','$idsubject','$idclass')";
@@ -90,15 +93,4 @@
 		}else echo " - Insert Study Error";
 	}else echo " - Check data";
 
-	// class Semester{
-	// 	function Semester($id){
-	// 		$this->id=$id;
-	// 	}
-	// }
-
-	// class Class{
-	// 	function Class($id){
-	// 		$this->id=$id;
-	// 	}
-	// }
 ?>
