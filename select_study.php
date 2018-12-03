@@ -2,7 +2,7 @@
 	include "connect.php";
 
 	$arraystudy = array();
-	$query = "SELECT sch_id,sch_dayofweek,sch_place,sch_lesson,st_idsubject,st_codeuser,sch_idstudy FROM schedule,study WHERE study.st_id=schedule.sch_idstudy";
+	$query = "SELECT sch_id,sch_dayofweek,sch_place,sch_lesson,st_idsubject,st_codeuser,sch_idstudy FROM schedule,study WHERE study.st_id=schedule.sch_idstudy ORDER BY sch_dayofweek,sch_lesson ASC";
 
 	$data = mysqli_query($conn,$query);
 	while ($row = mysqli_fetch_assoc($data)) {
