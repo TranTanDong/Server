@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2018 lúc 06:45 PM
+-- Thời gian đã tạo: Th12 07, 2018 lúc 07:44 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -39,10 +39,9 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`c_id`, `c_idsemester`, `c_name`) VALUES
-(20, 13, '12A2'),
-(21, 13, '12A3'),
-(22, 14, '12A6'),
-(25, 15, 'NL HĐH');
+(28, 18, 'DI14V7A2'),
+(29, 19, 'DI14V7A2'),
+(30, 20, 'DI14V7A2');
 
 -- --------------------------------------------------------
 
@@ -54,8 +53,18 @@ CREATE TABLE `diary` (
   `d_id` int(11) NOT NULL,
   `d_codeuser` varchar(50) NOT NULL,
   `d_name` varchar(200) NOT NULL,
-  `d_dayupdate` date NOT NULL
+  `d_dayupdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `diary`
+--
+
+INSERT INTO `diary` (`d_id`, `d_codeuser`, `d_name`, `d_dayupdate`) VALUES
+(1, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nhật ký cho những ngày buồn', '2018-12-03 00:00:00'),
+(2, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Buổi học cuối cùng', '2018-12-03 14:32:22'),
+(3, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Buổi học hôm ấy', '2018-12-03 14:34:21'),
+(6, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', '4 tháng mệt mõi', '2018-12-04 14:54:52');
 
 -- --------------------------------------------------------
 
@@ -108,12 +117,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`e_id`, `e_idplan`, `e_name`, `e_place`, `e_starttime`, `e_endtime`, `e_priority`, `e_remind`, `e_describe`) VALUES
-(1, 1, 'Sự kiện 1', '', '2018-11-15 20:28:00', '2018-11-15 21:28:00', 30, 10, ''),
-(2, 2, 'Trả tiền ngày 1', '', '2018-11-21 00:40:00', '2018-11-21 01:40:00', 64, 20, 'Haha'),
-(3, 2, 'Trả tiền ngày 2', '', '2018-11-21 00:40:00', '2018-11-21 01:40:00', 31, 10, 'Haha huhu'),
-(4, 2, 'Trả tiền ngày 3', 'Bank', '2018-11-21 01:30:00', '2018-11-21 01:55:00', 59, 10, 'Haha huhu'),
-(7, 1, 'Tìm nhà trọ cho cháu gái', 'Đường NVL và 3/2', '2018-11-22 10:00:00', '2018-11-22 13:00:00', 30, 10, 'Đi cùng tụi bạn haha\nHà hà'),
-(8, 39, 'Đi làm phục vụ', 'Nhà hàng Vạn Phát', '2018-11-25 09:00:00', '2018-11-25 14:00:00', 62, 20, 'Không có mô tả');
+(9, 42, 'Học bài môn CSDL', 'Cafe Happy 4', '2018-12-05 07:00:00', '2018-12-05 11:00:00', 100, 10, 'Đi cafe học bài cùng nhóm'),
+(10, 42, 'Học bài môn Toán Rời Rạc', 'Trung tâm Học liệu ĐHCT', '2018-12-07 13:00:00', '2018-12-07 17:00:00', 100, 10, 'Tìm một số sách tham khảo ở trung tâm học liệu');
 
 -- --------------------------------------------------------
 
@@ -134,7 +139,8 @@ INSERT INTO `form` (`f_id`, `f_name`) VALUES
 (1, 'Trắc nghiệm'),
 (2, 'Tự luận'),
 (3, 'Thực hành'),
-(4, 'Trắc nghiệm và tự luận');
+(4, 'Trắc nghiệm và tự luận'),
+(5, 'Khác');
 
 -- --------------------------------------------------------
 
@@ -155,15 +161,9 @@ CREATE TABLE `lecturer` (
 --
 
 INSERT INTO `lecturer` (`l_id`, `l_name`, `l_phone`, `l_email`, `l_web`) VALUES
-(30, 'Nguyen Thi Ut', '', '', ''),
-(32, 'Sa BanTụn', '', '', ''),
-(33, 'Trần Thanh Tuấn', '', '', ''),
-(34, 'Nguyễn Thị Út', '', '', ''),
-(35, 'Nguyễn Thanh Toàn', '', '', ''),
-(36, 'Nguyễn Văn Chim', '', '', ''),
-(37, 'Phạm Ngọc Quyền', '0147258369', 'pnquyen@cit.ctu.edu.vn', 'pnquyen.com'),
-(38, 'Trần Việt Châu', '0987654321', 'tvchau@cit.ctu.edu.vn', 'tvchau.com'),
-(39, 'Phạm Thị Xuân Diễm', '0123456789', 'ptxdiem@cit.ctu.edu.vn', 'ptxdiem.com');
+(42, 'Nguyễn Văn A', '0123456789', 'nva@gmail.com', 'nva.com'),
+(43, 'Trần Thị B', '0963852741', 'ttb@gmail.com', 'ttb.com'),
+(44, 'Phạm Văn D', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -183,16 +183,8 @@ CREATE TABLE `plan` (
 --
 
 INSERT INTO `plan` (`p_id`, `p_codeuser`, `p_name`, `p_updateday`) VALUES
-(1, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Cướp nhà bank', '2018-11-09 09:25:00'),
-(2, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Trả tiền bank', '2018-11-17 00:11:15'),
-(8, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Làm báo cáo ', '2018-11-09 07:24:00'),
-(12, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Code dạo', '2018-11-10 10:35:29'),
-(13, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Cafe cuối tuần', '2018-11-12 10:19:12'),
-(28, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Nãn thật', '2018-11-12 06:12:41'),
-(29, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Loading', '2018-11-12 13:23:17'),
-(38, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Học ML', '2018-11-22 07:16:17'),
-(39, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Mua Ex', '2018-11-23 07:20:13'),
-(40, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Làm báo cáo Luận Văn', '2018-11-28 21:51:22');
+(41, '8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Lấy học bổng', '2018-12-03 14:25:55'),
+(42, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Lấy học bổng', '2018-12-04 14:21:15');
 
 -- --------------------------------------------------------
 
@@ -213,8 +205,8 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`sch_id`, `sch_idstudy`, `sch_dayofweek`, `sch_place`, `sch_lesson`) VALUES
-(1, 30, 'Thứ 4', '101/KH', '45'),
-(2, 30, 'Thứ 6', 'P01/DI', '123456');
+(8, 33, 'Thứ 4', '203/C1', '345'),
+(10, 34, 'Thứ 2', '202/c1', '123');
 
 -- --------------------------------------------------------
 
@@ -265,9 +257,9 @@ CREATE TABLE `semester` (
 --
 
 INSERT INTO `semester` (`sm_id`, `sm_name`, `sm_year`) VALUES
-(13, 'Học kỳ 1', 2018),
-(14, 'Học kỳ 1', 2019),
-(15, 'Học kỳ 1', 2019);
+(18, 'Học kỳ 1', 2018),
+(19, 'Học kỳ 1', 2018),
+(20, 'Học kỳ 1', 2018);
 
 -- --------------------------------------------------------
 
@@ -288,14 +280,9 @@ CREATE TABLE `study` (
 --
 
 INSERT INTO `study` (`st_id`, `st_codeuser`, `st_idlecturer`, `st_idsubject`, `st_idclass`) VALUES
-(19, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 32, 20, 20),
-(20, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 33, 21, 21),
-(21, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 34, 22, 22),
-(22, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 35, 23, 22),
-(23, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 36, 24, 22),
-(24, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 37, 25, 25),
-(25, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 38, 26, 25),
-(30, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 39, 31, 25);
+(33, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 42, 34, 28),
+(34, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 43, 35, 29),
+(35, 'Chybi1iYOvOQbN9ajDAySdV1Gsh1', 44, 36, 30);
 
 -- --------------------------------------------------------
 
@@ -314,14 +301,12 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`s_id`, `s_name`, `s_createday`) VALUES
-(20, 'Hóa', '2018-11-23 03:14:00'),
-(21, 'Lý', '2018-11-24 17:26:25'),
-(22, 'Toán', '2018-11-24 05:26:20'),
-(23, 'GDCD', '2018-11-24 12:16:22'),
-(24, 'Văn', '2018-11-24 08:10:19'),
-(25, 'LVTN', '2018-11-24 07:32:32'),
 (26, 'Toán Rời Rạc', '2018-11-24 08:16:14'),
-(31, 'Nguyên Lý HĐH', '2018-11-24 08:24:24');
+(31, 'Nguyên Lý HĐH', '2018-11-24 08:24:24'),
+(32, 'Cấu trúc dữ liệu', '2018-12-03 12:40:58'),
+(34, 'Cấu trúc dữ liệu', '2018-12-04 14:38:23'),
+(35, 'Cơ sở dữ liệu', '2018-12-04 14:39:10'),
+(36, 'Toán rời rạc', '2018-12-04 14:40:49');
 
 -- --------------------------------------------------------
 
@@ -337,6 +322,15 @@ CREATE TABLE `testschedule` (
   `ts_place` varchar(100) NOT NULL,
   `ts_note` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `testschedule`
+--
+
+INSERT INTO `testschedule` (`ts_id`, `ts_idstudy`, `ts_idform`, `ts_daytest`, `ts_place`, `ts_note`) VALUES
+(3, 35, 5, '2018-12-14 13:30:00', 'P06/DI', 'Không được sử dụng tài liệu'),
+(6, 35, 4, '2018-12-10 14:30:00', '101/KH', 'TN 60 TL 40'),
+(7, 35, 3, '2018-12-12 13:30:00', '202/MT', 'Thi trong 80p');
 
 -- --------------------------------------------------------
 
@@ -390,7 +384,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`u_code`, `u_name`, `u_image`, `u_email`, `u_gender`, `u_birthday`) VALUES
 ('8gLYImKCKaZ0UNQfCYMY3ZY56bt2', 'Demo', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2F8gLYImKCKaZ0UNQfCYMY3ZY56bt2.png?alt=media&token=6f7feda2-e2ea-47e1-937e-a8946f48a2ba', 'demo@gmail.com', 0, '1997-12-20'),
-('Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Demo Pro', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FChybi1iYOvOQbN9ajDAySdV1Gsh1.png?alt=media&token=e44d7ff6-532e-462a-b09a-1a9a4c26a4a8', 'demo1@gmail.com', 0, '2006-07-08');
+('Chybi1iYOvOQbN9ajDAySdV1Gsh1', 'Demo I', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FChybi1iYOvOQbN9ajDAySdV1Gsh1.png?alt=media&token=b2417904-15b3-42b7-8136-48f379b24884', 'demo1@gmail.com', 0, '2006-07-08'),
+('ZfBPXI6hW0bQbljisTLIsUI8HwQ2', 'Trần Tấn Đồng', 'https://firebasestorage.googleapis.com/v0/b/studentdiary-e027b.appspot.com/o/User%2FZfBPXI6hW0bQbljisTLIsUI8HwQ2.png?alt=media&token=5b0d89af-7791-415e-bdb7-3e33832fb60c', 'ttdong@gmail.com', 1, '1997-03-02');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -528,13 +523,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `class`
 --
 ALTER TABLE `class`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `diary`
 --
 ALTER TABLE `diary`
-  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `diarydocument`
@@ -552,55 +547,55 @@ ALTER TABLE `documentsubject`
 -- AUTO_INCREMENT cho bảng `event`
 --
 ALTER TABLE `event`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `form`
 --
 ALTER TABLE `form`
-  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `lecturer`
 --
 ALTER TABLE `lecturer`
-  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT cho bảng `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT cho bảng `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `study`
 --
 ALTER TABLE `study`
-  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `testschedule`
 --
 ALTER TABLE `testschedule`
-  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `typeofdocument`
