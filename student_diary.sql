@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2018 lúc 07:44 PM
+-- Thời gian đã tạo: Th12 08, 2018 lúc 07:51 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -234,11 +234,23 @@ INSERT INTO `schoolyear` (`sy_id`) VALUES
 --
 
 CREATE TABLE `score` (
-  `sco_score` float NOT NULL,
+  `sco_score` double NOT NULL,
+  `sco_note` varchar(200) DEFAULT NULL,
+  `sco_updateday` datetime NOT NULL,
   `sco_idstudy` int(11) NOT NULL,
   `sco_idtos` int(11) NOT NULL,
   `sco_idform` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `score`
+--
+
+INSERT INTO `score` (`sco_score`, `sco_note`, `sco_updateday`, `sco_idstudy`, `sco_idtos`, `sco_idform`) VALUES
+(8.8, '', '2018-12-09 01:21:54', 35, 1, 1),
+(9, ' ', '2018-12-09 02:08:00', 35, 1, 5),
+(10, '', '2018-12-09 01:33:19', 35, 2, 1),
+(9.7, 'Chú k thích ghi', '2018-12-09 01:29:43', 35, 2, 2);
 
 -- --------------------------------------------------------
 
