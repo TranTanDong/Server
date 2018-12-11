@@ -1,7 +1,7 @@
 <?php
 	include "connect.php";
 	$arrayevent = array();
-	$query = "SELECT * FROM event";
+	$query = "SELECT e_id,e_idplan,e_name,e_place,e_starttime,e_endtime,e_priority,e_remind,e_describe,p_codeuser FROM event,plan WHERE event.e_idplan=plan.p_id";
 
 	$data = mysqli_query($conn,$query);
 	while ($row = mysqli_fetch_assoc($data)) {
@@ -14,7 +14,8 @@
 			$row['e_endtime'],
 			$row['e_priority'],
 			$row['e_remind'],
-			$row['e_describe'])
+			$row['e_describe'],
+			$row['p_codeuser'])
 		);
 	}
 
@@ -23,7 +24,7 @@
 
 
 	class Event{
-		function Event($id,$idplan,$name,$place,$starttime,$endtime,$priority,$remind,$describe){
+		function Event($id,$idplan,$name,$place,$starttime,$endtime,$priority,$remind,$describe,$codeuser){
 			$this->id=$id;
 			$this->idplan=$idplan;
 			$this->name=$name;
@@ -33,6 +34,7 @@
 			$this->priority=$priority;
 			$this->remind=$remind;
 			$this->describe=$describe;
+			$this->codeuser=$codeuser;
 		}
 	}
 
